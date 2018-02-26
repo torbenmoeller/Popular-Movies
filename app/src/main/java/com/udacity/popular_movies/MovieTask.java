@@ -11,15 +11,15 @@ import info.movito.themoviedbapi.model.core.MovieResultsPage;
 /**
  * Created by Torben on 25.02.18.
  */
-public class MovieTask extends AsyncTask<URL, Void, MovieDb> {
+public class MovieTask extends AsyncTask<Integer, Void, MovieDb> {
 
-  @Override
-    protected MovieDb doInBackground(URL... params) {
+    @Override
+    protected MovieDb doInBackground(Integer... ids) {
+        int id = ids[0];
         TmdbApi api = new TmdbApi(BuildConfig.TMDB_API_KEY);
         api.getConfiguration().getBaseUrl();
-        MovieResultsPage page = api.getMovies().getPopularMovies("en", 1);
-        MovieDb movie1 = page.getResults().get(0);
-        return movie1;
+        MovieDb movie = api.getMovies().getMovie(id, "en");
+        return movie;
     }
 
 }

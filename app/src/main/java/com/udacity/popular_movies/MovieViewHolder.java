@@ -33,11 +33,11 @@ public class MovieViewHolder extends RecyclerView.ViewHolder
     }
 
     URL url = null;
-    void bind(int listIndex, MovieResultsPage page) throws ExecutionException, InterruptedException {
+    MovieDb movie;
+    void bind(MovieDb movie) throws ExecutionException, InterruptedException {
         ImageView imageView = view.findViewById(R.id.image_item);
         imageView.setOnClickListener(this);
-        MovieDb movie = page.getResults().get(listIndex);
-
+        this.movie = movie;
         String path = movie.getPosterPath();
         AsyncTask<URL, Void, String> taskasdf = new BaseUrlTask().execute(url);
         String baseUrl = taskasdf.get();
@@ -50,7 +50,7 @@ public class MovieViewHolder extends RecyclerView.ViewHolder
 
     @Override
     public void onClick(View v) {
-        int clickedPosition = getAdapterPosition();
-        mOnClickListener.onListItemClick(clickedPosition);
+//        int clickedPosition = getAdapterPosition();
+        mOnClickListener.onListItemClick(movie.getId());
     }
 }

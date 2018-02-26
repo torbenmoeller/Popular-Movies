@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.concurrent.ExecutionException;
 
+import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
@@ -40,7 +41,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         try {
-            holder.bind(position, page);
+
+            MovieDb movie = page.getResults().get(position);
+            holder.bind(movie);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

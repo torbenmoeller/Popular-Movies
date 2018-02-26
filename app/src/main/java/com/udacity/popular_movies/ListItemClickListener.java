@@ -5,5 +5,5 @@ package com.udacity.popular_movies;
  */
 
 public interface ListItemClickListener {
-    void onListItemClick(int clickedItemIndex);
+    void onListItemClick(int movieId);
 }

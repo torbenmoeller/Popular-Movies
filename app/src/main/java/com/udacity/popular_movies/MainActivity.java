@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
     }
 
     @Override
-    public void onListItemClick(int clickedItemIndex) {
+    public void onListItemClick(int movieId) {
                 Intent startChildActivityIntent = new Intent(MainActivity.this, DetailActivity.class);
-                startChildActivityIntent.putExtra(Intent.EXTRA_TEXT, "testasdf");
+                startChildActivityIntent.putExtra(Intent.EXTRA_TEXT, movieId);
                 startActivity(startChildActivityIntent);
     }
 }

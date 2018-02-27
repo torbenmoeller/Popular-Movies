@@ -21,6 +21,14 @@ public class ExampleUnitTest {
     private MovieDb movie;
 
 
+    @Test
+    public void addition_isCor2rect23() throws Exception {
+        Integer pageCount = 0 / 20;
+         pageCount = 2 / 20;
+         pageCount = 20 / 20;
+         pageCount = 21 / 20;
+         pageCount = 40 / 20;
+    }
 
 
 //    @Test

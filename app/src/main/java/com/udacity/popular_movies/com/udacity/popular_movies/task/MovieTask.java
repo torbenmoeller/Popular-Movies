@@ -1,6 +1,8 @@
-package com.udacity.popular_movies;
+package com.udacity.popular_movies.com.udacity.popular_movies.task;
 
 import android.os.AsyncTask;
+
+import com.udacity.popular_movies.BuildConfig;
 
 import java.net.URL;
 

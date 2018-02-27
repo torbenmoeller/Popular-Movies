@@ -1,6 +1,8 @@
-package com.udacity.popular_movies;
+package com.udacity.popular_movies.com.udacity.popular_movies.task;
 
 import android.os.AsyncTask;
+
+import com.udacity.popular_movies.BuildConfig;
 
 import java.net.URL;
 
@@ -12,13 +14,12 @@ import info.movito.themoviedbapi.model.core.MovieResultsPage;
  * Created by Torben on 25.02.18.
  */
 
-public class MovieResultPageTask extends AsyncTask<URL, Void, MovieResultsPage> {
+public class BaseUrlTask extends AsyncTask<URL, Void, String> {
 
     @Override
-    protected MovieResultsPage doInBackground(URL... params) {
+    protected String doInBackground(URL... params) {
         TmdbApi api = new TmdbApi(BuildConfig.TMDB_API_KEY);
-        MovieResultsPage page = api.getMovies().getPopularMovies("en", 1);
-        return page;
+        return api.getConfiguration().getBaseUrl();
     }
 
 }

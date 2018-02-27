@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
+import com.udacity.popular_movies.com.udacity.popular_movies.task.BaseUrlTask;
 
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
 /**
  * Created by Torben on 26.02.18.
@@ -50,7 +50,6 @@ public class MovieViewHolder extends RecyclerView.ViewHolder
 
     @Override
     public void onClick(View v) {
-//        int clickedPosition = getAdapterPosition();
         mOnClickListener.onListItemClick(movie.getId());
     }
 }

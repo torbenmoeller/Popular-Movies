@@ -21,7 +21,8 @@ import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
 public class MainActivity extends AppCompatActivity implements ListItemClickListener {
 
-    @BindView(R.id.recycler_view) RecyclerView recycler_view;
+    @BindView(R.id.recycler_view)
+    RecyclerView recycler_view;
     Unbinder unbinder;
     private MovieAdapter mAdapter;
     private URL url = null;
@@ -33,42 +34,14 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
             setContentView(R.layout.activity_main);
             ButterKnife.bind(this);
 
-
-            AsyncTask<URL, Void, MovieResultsPage> task = new MovieResultPageTask().execute(url);
-            MovieResultsPage page = task.get();
-
-            GridLayoutManager layoutManager = new GridLayoutManager(this,2);
+            GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
             recycler_view.setLayoutManager(layoutManager);
             recycler_view.setHasFixedSize(true);
-            mAdapter = new MovieAdapter(page, getApplicationContext(), this);
+            mAdapter = new MovieAdapter(getApplicationContext(), this);
             recycler_view.setAdapter(mAdapter);
-
-
-
-
-
-//            AsyncTask<URL, Void, MovieDb> task = new QueryTask().execute(url);
-//            AsyncTask<URL, Void, String> taskasdf = new MovieTask().execute(url);
-//            String path = task.get().getPosterPath();
-//            String baseUrl = taskasdf.get();
-//            Picasso.with(getApplicationContext())
-//                    .load(baseUrl + "w185/"  +path)
-//                    .into(imageView);
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e("tag", "Error", e);
         }
-
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                String textEntered = imageView.toString();
-//                Intent startChildActivityIntent = new Intent(MainActivity.this, DetailActivity.class);
-//                startChildActivityIntent.putExtra(Intent.EXTRA_TEXT, textEntered);
-//                startActivity(startChildActivityIntent);
-//            }
-//        });
-
     }
 
     @Override
@@ -79,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
 
     @Override
     public void onListItemClick(int movieId) {
-                Intent startChildActivityIntent = new Intent(MainActivity.this, DetailActivity.class);
-                startChildActivityIntent.putExtra(Intent.EXTRA_TEXT, movieId);
-                startActivity(startChildActivityIntent);
+        Intent startChildActivityIntent = new Intent(MainActivity.this, DetailActivity.class);
+        startChildActivityIntent.putExtra(Intent.EXTRA_TEXT, movieId);
+        startActivity(startChildActivityIntent);
     }
 }

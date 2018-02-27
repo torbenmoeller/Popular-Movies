@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.udacity.popular_movies.MovieTask;
+import com.udacity.popular_movies.com.udacity.popular_movies.task.MovieTask;
 import com.udacity.popular_movies.R;
 
 import java.util.concurrent.ExecutionException;

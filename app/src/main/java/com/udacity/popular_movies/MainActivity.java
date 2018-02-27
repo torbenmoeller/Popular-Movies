@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,10 +34,10 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
             ButterKnife.bind(this);
 
 
-            AsyncTask<URL, Void, MovieResultsPage> taskasdf = new MovieResultPageTask().execute(url);
-            MovieResultsPage page = taskasdf.get();
+            AsyncTask<URL, Void, MovieResultsPage> task = new MovieResultPageTask().execute(url);
+            MovieResultsPage page = task.get();
 
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            GridLayoutManager layoutManager = new GridLayoutManager(this,2);
             recycler_view.setLayoutManager(layoutManager);
             recycler_view.setHasFixedSize(true);
             mAdapter = new MovieAdapter(page, getApplicationContext(), this);

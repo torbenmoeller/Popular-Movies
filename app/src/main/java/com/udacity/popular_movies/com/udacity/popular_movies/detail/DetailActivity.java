@@ -40,10 +40,11 @@ public class DetailActivity extends AppCompatActivity {
 
             AsyncTask<Integer, Void, MovieDb> task = new MovieTask().execute(movieId);
             MovieDb page = task.get();
+
             tv_title.setText(page.getTitle());
-//            tv_synopsis.setText(page.getReleases());
+            tv_synopsis.setText(page.getOverview());
             tv_release_date.setText(page.getReleaseDate());
-//            tv_user_rating.setText(String.valueOf(page.getUserRating()));
+            tv_user_rating.setText(String.valueOf(page.getUserRating()));
 
         }catch (InterruptedException e) {
             e.printStackTrace();

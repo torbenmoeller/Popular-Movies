@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.udacity.popular_movies.com.udacity.popular_movies.SortOrder;
 import com.udacity.popular_movies.com.udacity.popular_movies.task.MovieResultPageTask;
 
 import java.util.concurrent.ExecutionException;
@@ -18,15 +19,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
 
     private Context context;
     private ListItemClickListener mOnClickListener;
+    private SortOrder sortOrder;
 
     @Override
     public int getItemCount() {
         return 100;//page.getTotalResults();
     }
 
-    public MovieAdapter(Context context, ListItemClickListener listener) {
+    public MovieAdapter(Context context, ListItemClickListener listener, SortOrder sortOrder) {
         this.context = context;
         this.mOnClickListener = listener;
+        this.sortOrder = sortOrder;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
         try {
             Integer pageCount = position / 20 +1 ; //Which page to load, starts at 1
             Integer pageOffset = position % 20; //Move on page
-            AsyncTask<Integer, Void, MovieResultsPage> task = new MovieResultPageTask().execute(pageCount);
+            AsyncTask<Integer, Void, MovieResultsPage> task = new MovieResultPageTask(sortOrder).execute(pageCount);
             MovieResultsPage page = task.get();
             MovieDb movie = page.getResults().get(pageOffset);
             holder.bind(movie);

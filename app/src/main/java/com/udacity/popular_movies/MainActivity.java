@@ -10,8 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import com.udacity.popular_movies.com.udacity.popular_movies.SortOrder;
-import com.udacity.popular_movies.com.udacity.popular_movies.detail.DetailActivity;
+import com.udacity.popular_movies.detail.DetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

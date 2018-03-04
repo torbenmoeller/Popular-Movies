@@ -1,8 +1,9 @@
-package com.udacity.popular_movies.com.udacity.popular_movies.task;
+package com.udacity.popular_movies.task;
 
 import android.os.AsyncTask;
 
 import com.udacity.popular_movies.BuildConfig;
+import com.udacity.popular_movies.Config;
 
 
 import info.movito.themoviedbapi.TmdbApi;
@@ -15,7 +16,7 @@ public class MovieTask extends AsyncTask<Integer, Void, MovieDb> {
         int id = ids[0];
         TmdbApi api = new TmdbApi(BuildConfig.TMDB_API_KEY);
         api.getConfiguration().getBaseUrl();
-        return api.getMovies().getMovie(id, "en");
+        return api.getMovies().getMovie(id, Config.getLanguage());
     }
 
 }

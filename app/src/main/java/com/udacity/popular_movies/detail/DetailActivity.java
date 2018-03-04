@@ -1,19 +1,18 @@
-package com.udacity.popular_movies.com.udacity.popular_movies.detail;
+package com.udacity.popular_movies.detail;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.udacity.popular_movies.Config;
 import com.udacity.popular_movies.R;
-import com.udacity.popular_movies.com.udacity.popular_movies.task.BaseUrlTask;
-import com.udacity.popular_movies.com.udacity.popular_movies.task.MovieTask;
-
-import java.util.concurrent.ExecutionException;
+import com.udacity.popular_movies.task.MovieTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,28 +40,24 @@ public class DetailActivity extends AppCompatActivity {
 
             AsyncTask<Integer, Void, MovieDb> task = new MovieTask().execute(movieId);
             MovieDb page = task.get();
-            AsyncTask<Void, Void, String> baseUrlTask = new BaseUrlTask().execute();
-            String baseUrl = baseUrlTask.get();
-
-            String completepath = baseUrl + "w185/" + page.getBackdropPath();
+            String completePath = Config.getBaseUrl() + Config.getHighResolution() + page.getBackdropPath();
 
             Picasso.with(getApplicationContext())
-                    .load(completepath)
+                    .load(completePath)
                     .into(imageView);
             tv_title.setText(page.getTitle());
             tv_synopsis.setText(page.getOverview());
             tv_release_date.setText(page.getReleaseDate());
             tv_user_rating.setText(String.valueOf(page.getVoteAverage()));
 
-        }catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        }catch (Exception e) {
+            Log.e("DetailActivity", e.getMessage());
+            closeOnError();
         }
     }
 
     private void closeOnError() {
         finish();
-        Toast.makeText(this, "bla", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Error while loading movie data", Toast.LENGTH_SHORT).show();
     }
 }

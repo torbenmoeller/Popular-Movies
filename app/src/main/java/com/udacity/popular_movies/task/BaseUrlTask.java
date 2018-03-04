@@ -1,4 +1,4 @@
-package com.udacity.popular_movies.com.udacity.popular_movies.task;
+package com.udacity.popular_movies.task;
 
 import android.os.AsyncTask;
 

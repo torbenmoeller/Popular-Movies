@@ -1,15 +1,11 @@
 package com.udacity.popular_movies;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-import com.udacity.popular_movies.com.udacity.popular_movies.task.BaseUrlTask;
-
-import java.util.concurrent.ExecutionException;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
@@ -28,16 +24,14 @@ public class MovieViewHolder extends RecyclerView.ViewHolder
         this.context = context;
     }
 
-    void bind(MovieDb movie) throws ExecutionException, InterruptedException {
+    void bind(MovieDb movie) {
         ImageView imageView = view.findViewById(R.id.image_item);
         imageView.setOnClickListener(this);
         this.movie = movie;
         String path = movie.getPosterPath();
-        AsyncTask<Void, Void, String> baseUrlTask = new BaseUrlTask().execute();
-        String baseUrl = baseUrlTask.get();
-        String completepath = baseUrl + "w185/" + path;
+        String completePath = Config.getBaseUrl() + Config.getResolution() + path;
         Picasso.with(context)
-                .load(completepath)
+                .load(completePath)
                 .into(imageView);
         view.refreshDrawableState();
     }

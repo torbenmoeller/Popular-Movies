@@ -3,6 +3,7 @@ package com.udacity.popular_movies;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
         try {
             Integer pageCount = position / 20 +1 ; //Which page to load, starts at 1
             Integer pageOffset = position % 20; //Move on page
-            AsyncTask<Integer, Void, MovieResultsPage> task = new MovieResultPageTask(sortOrder).execute(pageCount);
+            Pair<Integer, SortOrder> params = new Pair<>(pageCount, sortOrder);
+            AsyncTask<Pair<Integer, SortOrder>, Void, MovieResultsPage> task = new MovieResultPageTask().execute(params);
             MovieResultsPage page = task.get();
             MovieDb movie = page.getResults().get(pageOffset);
             holder.bind(movie);

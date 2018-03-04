@@ -1,6 +1,7 @@
 package com.udacity.popular_movies.com.udacity.popular_movies.task;
 
 import android.os.AsyncTask;
+import android.util.Pair;
 
 import com.udacity.popular_movies.BuildConfig;
 import com.udacity.popular_movies.com.udacity.popular_movies.SortOrder;
@@ -15,29 +16,20 @@ import info.movito.themoviedbapi.model.core.MovieResultsPage;
  * Created by Torben on 25.02.18.
  */
 
-public class MovieResultPageTask extends AsyncTask<Integer, Void, MovieResultsPage> {
-
-    SortOrder sortOrder;
-    MovieResultsPage page;
-
-    public MovieResultPageTask(SortOrder sortOrder){
-        this.sortOrder = sortOrder;
-    }
+public class MovieResultPageTask extends AsyncTask<Pair<Integer, SortOrder>, Void, MovieResultsPage> {
 
     @Override
-    protected MovieResultsPage doInBackground(Integer... params) {
-        Integer pageNumber = params[0];
+    protected MovieResultsPage doInBackground(Pair<Integer, SortOrder>... params) {
+        Integer pageNumber = params[0].first;
+        SortOrder sortOrder = params[0].second;
         TmdbApi api = new TmdbApi(BuildConfig.TMDB_API_KEY);
         switch (sortOrder){
             case RatingDescending:
-                page = api.getMovies().getTopRatedMovies("en", pageNumber);
-                break;
+                return api.getMovies().getTopRatedMovies("en", pageNumber);
             case PopularityDescending:
             default: //default, if error happened
-                page = api.getMovies().getPopularMovies("en", pageNumber);
-                break;
+                return api.getMovies().getPopularMovies("en", pageNumber);
         }
-        return page;
     }
 
 }

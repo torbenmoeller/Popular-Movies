@@ -14,12 +14,11 @@ import info.movito.themoviedbapi.model.core.MovieResultsPage;
  * Created by Torben on 25.02.18.
  */
 
-public class BaseUrlTask extends AsyncTask<URL, Void, String> {
+public class BaseUrlTask extends AsyncTask<Void, Void, String> {
 
     @Override
-    protected String doInBackground(URL... params) {
+    protected String doInBackground(Void... voids) {
         TmdbApi api = new TmdbApi(BuildConfig.TMDB_API_KEY);
         return api.getConfiguration().getBaseUrl();
     }
-
 }

@@ -4,11 +4,10 @@ import android.os.AsyncTask;
 
 import com.udacity.popular_movies.BuildConfig;
 
-import java.net.URL;
 
 import info.movito.themoviedbapi.TmdbApi;
+import info.movito.themoviedbapi.TmdbMovies.MovieMethod;
 import info.movito.themoviedbapi.model.MovieDb;
-import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
 /**
  * Created by Torben on 25.02.18.

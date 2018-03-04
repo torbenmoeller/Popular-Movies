@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
     Spinner spinner;
 
     Unbinder unbinder;
+
     private MovieAdapter mAdapter;
     private SortOrder sortOrder = SortOrder.PopularityDescending;
 

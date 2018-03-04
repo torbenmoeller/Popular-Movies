@@ -8,13 +8,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+import com.udacity.popular_movies.com.udacity.popular_movies.task.BaseUrlTask;
 import com.udacity.popular_movies.com.udacity.popular_movies.task.MovieTask;
 import com.udacity.popular_movies.R;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import info.movito.themoviedbapi.model.Artwork;
+import info.movito.themoviedbapi.model.ArtworkType;
 import info.movito.themoviedbapi.model.MovieDb;
 
 public class DetailActivity extends AppCompatActivity {
@@ -40,11 +45,18 @@ public class DetailActivity extends AppCompatActivity {
 
             AsyncTask<Integer, Void, MovieDb> task = new MovieTask().execute(movieId);
             MovieDb page = task.get();
+            AsyncTask<Void, Void, String> baseUrlTask = new BaseUrlTask().execute();
+            String baseUrl = baseUrlTask.get();
 
+            String completepath = baseUrl + "w185/" + page.getBackdropPath();
+
+            Picasso.with(getApplicationContext())
+                    .load(completepath)
+                    .into(imageView);
             tv_title.setText(page.getTitle());
             tv_synopsis.setText(page.getOverview());
             tv_release_date.setText(page.getReleaseDate());
-            tv_user_rating.setText(String.valueOf(page.getUserRating()));
+            tv_user_rating.setText(String.valueOf(page.getVoteAverage()));
 
         }catch (InterruptedException e) {
             e.printStackTrace();

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recycler_view.setLayoutManager(layoutManager);
         recycler_view.setHasFixedSize(true);
-        mAdapter = new MovieAdapter(getApplicationContext(), this, sortOrder);
+        mAdapter = new MovieAdapter(this, sortOrder);
         recycler_view.setAdapter(mAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ListItemClickList
                 } else {
                     sortOrder = SortOrder.RatingDescending;
                 }
-                mAdapter = new MovieAdapter(getApplicationContext(), MainActivity.this, sortOrder);
+                mAdapter = new MovieAdapter(MainActivity.this, sortOrder);
                 recycler_view.invalidate();
                 recycler_view.setAdapter(mAdapter);
             }

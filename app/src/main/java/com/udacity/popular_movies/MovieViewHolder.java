@@ -13,17 +13,13 @@ import java.util.concurrent.ExecutionException;
 
 import info.movito.themoviedbapi.model.MovieDb;
 
-/**
- * Created by Torben on 26.02.18.
- */
-
 public class MovieViewHolder extends RecyclerView.ViewHolder
         implements View.OnClickListener {
 
-    View view;
-    MovieDb movie;
+    private MovieDb movie;
     private ListItemClickListener mOnClickListener = null;
-    private Context context;
+    private final View view;
+    private final Context context;
 
     public MovieViewHolder(Context context, View itemView, ListItemClickListener mOnClickListener) {
         super(itemView);

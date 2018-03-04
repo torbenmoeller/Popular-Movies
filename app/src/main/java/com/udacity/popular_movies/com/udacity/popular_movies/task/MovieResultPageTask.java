@@ -6,15 +6,8 @@ import android.util.Pair;
 import com.udacity.popular_movies.BuildConfig;
 import com.udacity.popular_movies.com.udacity.popular_movies.SortOrder;
 
-import java.net.URL;
-
 import info.movito.themoviedbapi.TmdbApi;
-import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
-
-/**
- * Created by Torben on 25.02.18.
- */
 
 public class MovieResultPageTask extends AsyncTask<Pair<Integer, SortOrder>, Void, MovieResultsPage> {
 

@@ -16,19 +16,17 @@ import java.util.concurrent.ExecutionException;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
+class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
 
-    private Context context;
-    private ListItemClickListener mOnClickListener;
-    private SortOrder sortOrder;
+    private final ListItemClickListener mOnClickListener;
+    private final SortOrder sortOrder;
 
     @Override
     public int getItemCount() {
         return 100;//page.getTotalResults();
     }
 
-    public MovieAdapter(Context context, ListItemClickListener listener, SortOrder sortOrder) {
-        this.context = context;
+    public MovieAdapter(ListItemClickListener listener, SortOrder sortOrder) {
         this.mOnClickListener = listener;
         this.sortOrder = sortOrder;
     }
@@ -39,8 +37,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
         int layoutIdForListItem = R.layout.movie_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layoutIdForListItem, viewGroup, false);
-        MovieViewHolder viewHolder = new MovieViewHolder(context, view, mOnClickListener);
-        return viewHolder;
+        return new MovieViewHolder(context, view, mOnClickListener);
     }
 
     @Override

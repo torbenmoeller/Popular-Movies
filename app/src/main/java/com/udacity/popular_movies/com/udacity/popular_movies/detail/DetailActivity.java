@@ -9,19 +9,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.udacity.popular_movies.R;
 import com.udacity.popular_movies.com.udacity.popular_movies.task.BaseUrlTask;
 import com.udacity.popular_movies.com.udacity.popular_movies.task.MovieTask;
-import com.udacity.popular_movies.R;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import info.movito.themoviedbapi.model.Artwork;
-import info.movito.themoviedbapi.model.ArtworkType;
 import info.movito.themoviedbapi.model.MovieDb;
-
 public class DetailActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_title) TextView tv_title;
